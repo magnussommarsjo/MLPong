@@ -6,6 +6,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Racket racket;
+    [SerializeField] private KeyCode moveUpKey = KeyCode.UpArrow;
+    [SerializeField] private KeyCode moveDownKey = KeyCode.DownArrow;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +24,10 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlayerMovement()
     {
-        if (Input.GetKey(KeyCode.UpArrow)){
+        if (Input.GetKey(moveUpKey)){
             // Move up
             racket.Move(1);
-        } else if (Input.GetKey(KeyCode.DownArrow)){
+        } else if (Input.GetKey(moveDownKey)){
             // Move Down
             racket.Move(-1);
         } else {

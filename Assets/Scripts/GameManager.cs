@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         
             StartCoroutine(EndGame(2));
         }
+
+        StartCoroutine(StartNewRound());
     }
 
     private IEnumerator EndGame(int delayInSeconds) {
@@ -79,6 +81,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Return to Main Menu when ESC is pressed
+        if (Input.GetKey(KeyCode.Escape)) {
+            StartCoroutine(EndGame(0));
+        }
 
     }
 }

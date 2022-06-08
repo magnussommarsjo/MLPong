@@ -9,7 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 720685730705317589, guid: 06a26ff4d6fc3d148bf45bab64f5e409, type: 3}
       propertyPath: m_Name
-      value: SimpleAI
+      value: SimpleAIRacket
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761913987847697458, guid: 06a26ff4d6fc3d148bf45bab64f5e409, type: 3}
+      propertyPath: player
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761913987847697458, guid: 06a26ff4d6fc3d148bf45bab64f5e409, type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4966695303045622282, guid: 06a26ff4d6fc3d148bf45bab64f5e409, type: 3}
       propertyPath: m_RootOrder
@@ -74,3 +82,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0dc6065eaa80d4fa1dea23d044da23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  moveDelayDistance: 0.5

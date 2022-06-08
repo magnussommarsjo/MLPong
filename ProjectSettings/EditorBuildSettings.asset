@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ce153b32df34d0047962ed95bd74101e
   - enabled: 1
-    path: Assets/Scenes/BasicPong.unity
+    path: Assets/Scenes/SinglePlayer.unity
     guid: 1ac8aa6d0211177468566de5252a590e
+  - enabled: 1
+    path: Assets/Scenes/TwoPlayers.unity
+    guid: d50207d815e767e4296812cbad97b5b7
   m_configObjects: {}

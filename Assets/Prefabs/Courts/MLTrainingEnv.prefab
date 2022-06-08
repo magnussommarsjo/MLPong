@@ -336,6 +336,7 @@ MonoBehaviour:
   player1: {fileID: 7955628377715200964}
   player2: {fileID: 1407850957538667907}
   scoreHandler: {fileID: 0}
+  isTraining: 1
 --- !u!1 &8229669652152840486
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 8229669653401974911}
+  maxScore: 11
 --- !u!1 &8229669652451227626
 GameObject:
   m_ObjectHideFlags: 0
