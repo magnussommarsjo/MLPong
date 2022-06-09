@@ -59,19 +59,29 @@ public class RacketAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Observe itself and the oponents position
-        sensor.AddObservation(transform.localPosition.x);
+        // Calculate realtive positions in X so that it would be same independent of
+        // left or right side playing. 
+        float oponentRelativeX = Mathf.Abs(oponent.transform.localPosition.x - transform.localPosition.x);
+        float ballRelativeX = Mathf.Abs(ball.transform.localPosition.x - transform.localPosition.x);
+        
+        // Observe itself and the relative position to others
         sensor.AddObservation(transform.localPosition.y);
-        sensor.AddObservation(oponent.transform.localPosition.x);
+
+        sensor.AddObservation(oponentRelativeX);
         sensor.AddObservation(oponent.transform.localPosition.y);
 
-        // Observe ball position and velocity
-        sensor.AddObservation(ball.transform.localPosition.x);
         sensor.AddObservation(ball.transform.localPosition.y);
-        sensor.AddObservation(ballRigidbody.velocity.x);
-        sensor.AddObservation(ballRigidbody.velocity.y);
+        sensor.AddObservation(ballRelativeX);
 
-        // Note: Do we need to observe top and bottom wall as well?
+        // Relative speed towards agent 
+        // (+1: moving towards agent)
+        // (-1: moving away from agent)
+        Vector2 ballDirection = ballRigidbody.velocity.normalized;
+        sensor.AddObservation(ballDirection.y);
+        sensor.AddObservation(ballDirection.x * Mathf.Sign(transform.localPosition.x));
+
+        // Observe ball velocity
+        sensor.AddObservation(ballRigidbody.velocity.magnitude);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
