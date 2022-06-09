@@ -44,12 +44,12 @@ public class RacketAgent : Agent
 
     private void Loses()
     {
-        SetReward(-1.0f);
+        SetReward(0); // No penalty
     }
 
     private void HitOwnRacket()
     {
-        SetReward(0.1f); // Do we need this?
+        SetReward(0.1f);
     }
 
     public override void OnEpisodeBegin()
