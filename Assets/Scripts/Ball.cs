@@ -18,11 +18,19 @@ public class Ball : MonoBehaviour
     [SerializeField] private bool isDirectionContactDependent = true;
     [SerializeField] private float relaxation = 1f;
 
+    [SerializeField] private AudioClip bounceRacketSound;
+    [SerializeField] private AudioClip bounceSideSound;
+    [SerializeField] private AudioClip crashSound;
+    public bool soundEnabled = true;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+
         startPosition = transform.position;
 
         GenerateRandomVelocity();
@@ -56,10 +64,12 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("Player1Goal") && onPlayer1GoalEnter != null)
         {
             onPlayer1GoalEnter();
+            if (soundEnabled) audioSource.PlayOneShot(crashSound);
         }
         else if (other.CompareTag("Player2Goal") && onPlayer2GoalEnter != null)
         {
             onPlayer2GoalEnter();
+            if (soundEnabled) audioSource.PlayOneShot(crashSound);
         }
     }
 
@@ -85,7 +95,8 @@ public class Ball : MonoBehaviour
 
 
             // If we collide with a racket, increases ball speed.
-            if (rigidbody.velocity.magnitude < maxSpeed) {
+            if (rigidbody.velocity.magnitude < maxSpeed)
+            {
                 rigidbody.velocity *= ballSpeedIncrease;
             }
 
@@ -93,6 +104,12 @@ public class Ball : MonoBehaviour
             {
                 rigidbody.velocity = GetNewVelocityFromRacketCollision(other);
             }
+
+            if (soundEnabled) audioSource.PlayOneShot(bounceRacketSound);
+        }
+        else
+        {
+            if (soundEnabled) audioSource.PlayOneShot(bounceSideSound);
         }
     }
 
@@ -124,10 +141,12 @@ public class Ball : MonoBehaviour
         return rigidbody.velocity.magnitude * direction;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
+    private void OnTriggerExit2D(Collider2D other)
+    {
 
         // If somehow the ball exits of court, then reset ball. 
-        if (other.CompareTag("Boundary")) {
+        if (other.CompareTag("Boundary"))
+        {
             ResetBall();
             GenerateRandomVelocity();
             Debug.Log("Hard Reset Ball");
