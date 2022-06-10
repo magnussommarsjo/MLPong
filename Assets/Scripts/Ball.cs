@@ -32,8 +32,9 @@ public class Ball : MonoBehaviour
     {
         float angleLimit = 60f;
         float angle = Random.Range(-angleLimit, angleLimit);
+        float sign = Mathf.Sign(Random.Range(-0.5f, 0.5f)); // Left or right
         rigidbody.velocity = new Vector2(
-            Mathf.Cos(angle * Mathf.Deg2Rad),
+            sign * Mathf.Cos(angle * Mathf.Deg2Rad),
             Mathf.Sin(angle * Mathf.Deg2Rad)
         ).normalized * ballSpeed;
     }
