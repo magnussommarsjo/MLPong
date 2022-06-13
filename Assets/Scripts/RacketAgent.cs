@@ -33,6 +33,7 @@ public class RacketAgent : Agent
         {
             ballScript.onPlayer1GoalEnter += Wins;
             ballScript.onPlayer2GoalEnter += Loses;
+            ballScript.onPlayer2RacketCollision += HitOwnRacket;
         }
 
     }
@@ -107,6 +108,7 @@ public class RacketAgent : Agent
             continousActionsOut[0] = 0f;
         }
     }
+
 
 
 }
