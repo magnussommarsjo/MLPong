@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 8229669652077360555}
   - component: {fileID: 8229669652077360554}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: TrainingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,14 +329,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8229669652077360556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b193de8b32d3bb540ad3602daef36c91, type: 3}
+  m_Script: {fileID: 11500000, guid: aebf38472cd694946a4fde6dd4c29236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 8229669652760677171}
   player1: {fileID: 7955628377715200964}
   player2: {fileID: 4780725608506176723}
   scoreHandler: {fileID: 0}
-  isTraining: 1
 --- !u!1 &8229669652152840486
 GameObject:
   m_ObjectHideFlags: 0

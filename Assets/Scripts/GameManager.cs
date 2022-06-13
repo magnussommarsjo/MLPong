@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private Ball ball;
-    [SerializeField] private Racket player1;
-    [SerializeField] private Racket player2;
-    [SerializeField] private ScoreHandler scoreHandler;
-    [SerializeField] private bool isTraining = false;
+    [SerializeField] protected Ball ball;
+    [SerializeField] protected Racket player1;
+    [SerializeField] protected Racket player2;
+    [SerializeField] protected ScoreHandler scoreHandler;
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
         ball.onPlayer1GoalEnter += Player2Scores;
         ball.onPlayer2GoalEnter += Player1Scores;
@@ -23,15 +22,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void ProcessGameState()
+    protected virtual void ProcessGameState()
     {
-        // Check if is traingin and then simply start a new round
-        if (isTraining)
-        {
-            StartCoroutine(StartNewRound());
-            return;
-        }
-
         if (scoreHandler != null && scoreHandler.Result != ResultState.GAME_ONGOING) {
             // TODO: Show text of who won the game before closing
             if (scoreHandler.Result == ResultState.PLAYER_ONE_WON) Debug.Log("Player One Wins");
@@ -40,7 +32,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EndGame(2));
         }
 
-        StartCoroutine(StartNewRound());
+        StartCoroutine(StartNewRound(2));
     }
 
     private IEnumerator EndGame(int delayInSeconds) {
@@ -67,13 +59,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator StartNewRound()
+    protected virtual IEnumerator StartNewRound(int timeDelay)
     {
-        Debug.Log("Starting new round");
         ball.ResetBall();
         player1.ResetRacket();
         player2.ResetRacket();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(timeDelay);
         // Add UI updates here. 
         ball.GenerateRandomVelocity();
     }

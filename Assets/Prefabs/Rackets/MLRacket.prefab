@@ -91,7 +91,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 2000
+  MaxStep: 0
   oponent: {fileID: 0}
   ball: {fileID: 0}
 --- !u!114 &4654187312682032071
